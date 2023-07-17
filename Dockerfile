@@ -33,14 +33,14 @@ RUN python -m venv /py && \
     # Create a non-root user for running the application
     adduser --disabled-password --no-create-home app && \
     # Set the ownership of the application files to the non-root user
-    chown -R app /app && \
     mkdir -p /vol/web/static && \
     mkdir -p /vol/web/media && \
     chown -R app:app /vol && \
-    chmod -R 755 /vol
+    chmod -R 755 /vol && \
+    chmod -R +x /scripts
 
 # Add the virtual environment to the PATH
-ENV PATH="/py/bin:$PATH"
+ENV PATH="/scripts:/py/bin:$PATH"
 
 # Switch to the non-root user
 USER app
